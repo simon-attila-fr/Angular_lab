@@ -1,7 +1,9 @@
 <div>
     <h2>Recherche de vidéos sur YouTube</h2>
     <div>
-        <input type="text" [(ngModel)]="searchField" placeholder="Rechercher...">
+        <label for="angular_lab-user_home-search">Recherches de vidéos sur YouTube :</label>
+        <input id="angular_lab-user_home-search" type="text" [(ngModel)]="searchField" placeholder="Rechercher...">
         <button (click)="handleSearchClick()">Rechercher</button>
+        <app-search-result-list [searchResultItems]="searchResultItems()"></app-search-result-list>
     </div>
 </div>

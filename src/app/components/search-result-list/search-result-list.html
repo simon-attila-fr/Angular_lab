@@ -1,0 +1,11 @@
+<div>
+    @for (item of searchResultItems(); track item.id.videoId) {
+        <app-card
+            [videoId]="item.id.videoId"
+            [title]="item.snippet.title"
+            [thumbnailURL]="item.snippet.thumbnails.default.url"
+            [description]="item.snippet.description"
+        >
+        </app-card>
+    }
+</div>

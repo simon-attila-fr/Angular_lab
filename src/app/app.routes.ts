@@ -3,6 +3,7 @@ import { Home } from './pages/home/home';
 import { Login } from './pages/login/login';
 import { Register } from './pages/register/register';
 import { UserHome } from './pages/user-home/user-home';
+import { OneVideo } from './pages/one-video/one-video';
 
 export const routes: Routes = [
     {
@@ -20,5 +21,9 @@ export const routes: Routes = [
     {
         path: 'userHome',
         component: UserHome
+    },
+    {
+        path: 'oneVideo/:videoId',
+        component: OneVideo
     }
 ];
