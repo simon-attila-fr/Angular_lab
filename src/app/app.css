@@ -1,0 +1,11 @@
+.content_container {
+    min-height: 80vh;
+}
+
+.content_container {
+    display: flex;
+}
+
+.sidebar_container {
+    background-color: oklch(70.7% 0.022 261.325);
+}

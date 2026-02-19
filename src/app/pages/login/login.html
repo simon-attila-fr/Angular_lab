@@ -5,7 +5,7 @@
         <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
           Nom d'utilisateur
         </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
+        <input id="username" name="username" type="text" placeholder="Username" [formControl]="loginForm.controls.username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
       </div>
       <!-- <div class="mb-6">
         <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
@@ -18,14 +18,14 @@
         <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
           Mot de passe
         </label>
-        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************">
+        <input id="password" name="password" type="password" placeholder="******************" [formControl]="loginForm.controls.password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
       </div>
       <div class="flex items-center justify-between">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+        <button (click)="handleLogin()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
           Se connecter
         </button>
         <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
-          Pas encore de compte ? S'inscrire
+          Pas encore de compte ? <a [routerLink]="['/auth/signup']">S'inscrire</a>
         </a>
       </div>
     </form>

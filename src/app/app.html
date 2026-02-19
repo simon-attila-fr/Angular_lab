@@ -1,3 +1,10 @@
-<app-header></app-header>
-<h1>MyYouTube</h1>
-<router-outlet />
+<div class="app-container">
+  <app-header></app-header>
+  <div class="content_container">
+    <app-sidebar class="sidebar_container"></app-sidebar>
+    <div class="flex-1 text-gray-700 text-center px-4 py-2 m-2">
+      <h1>MyYouTube</h1>
+      <router-outlet />
+    </div>
+  </div>
+</div>
