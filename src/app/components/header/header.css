@@ -1,3 +1,16 @@
 * {
     background-color: rgb(220, 38, 38);
 }
+
+#angular_lab-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 7vh;
+    max-height: 15vh;
+}
+
+#angular_lab-header-buttons {
+    display: flex;
+    gap: 10px
+}

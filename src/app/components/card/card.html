@@ -1,33 +1,32 @@
-<div class="max-w-sm rounded overflow-hidden shadow-lg">
-  @if(showVideo()) {
-    <iframe
-      [class.thumbnail]="thumbnailURL()"
-      [src]="safeURL()"
-      width="560"
-      height="315"
-      frameborder="0"
-      webkitallowfullscreen      
-      mozallowfullscreen
-      allowfullscreen>
-    </iframe>
-  }
-  @if(showThumbnail()){<img class="w-full" src="{{ thumbnailURL() }}" alt="Sunset in the mountains">}
-  <div class="px-6 py-4">
-    <div class="font-bold text-xl mb-2"><a [routerLink]="['/oneVideo', videoId()]">{{ title() }}</a></div>
-    @if(truncatedDescription()) {
-      <p class="text-gray-700 text-base">{{ description().slice(0, 35) }}</p>
-    }@else {
-      <p class="text-gray-700 text-base">{{ description() }}</p>
+<div id="angular_lab-card-container">
+  <div class="max-w-sm rounded overflow-hidden shadow-lg">
+    @if(showVideo()) {
+      <iframe
+        [class.thumbnail]="thumbnailURL()"
+        [src]="safeURL()"
+        width="560"
+        height="315"
+        frameborder="0"
+        webkitallowfullscreen      
+        mozallowfullscreen
+        allowfullscreen>
+      </iframe>
     }
-    @if(truncatedDescription()){<p (click)="handleTruncateDescription()">Voir plus...</p>}@else {<p (click)="handleTruncateDescription()">Voir moins...</p>}
+    @if(showThumbnail()){<img class="w-full" src="{{ thumbnailURL() }}" alt="Sunset in the mountains">}
+    <div class="px-6 py-4">
+      <div class="font-bold text-xl mb-2"><a [routerLink]="['/oneVideo', videoId()]">{{ title() }}</a></div>
+      @if(truncatedDescription()) {
+        <p class="text-gray-700 text-base">{{ description().slice(0, 35) }}</p>
+      }@else {
+        <p class="text-gray-700 text-base">{{ description() }}</p>
+      }
+      @if(truncatedDescription()){<p (click)="handleTruncateDescription()">Voir plus...</p>}@else {<p (click)="handleTruncateDescription()">Voir moins...</p>}
+    </div>
+    <div class="px-6 pt-4 pb-2">
+      @for (tag of tags(); track tag) {
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{ tag }}</span>
+      }
+    </div>
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">+ Ajouter</button>
   </div>
-  <div class="px-6 pt-4 pb-2">
-    @for (tag of tags(); track tag) {
-      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{ tag }}</span>
-    }
-    <!-- <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
-    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
-    <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span> -->
-  </div>
-  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">+ Ajouter</button>
 </div>

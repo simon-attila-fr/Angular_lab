@@ -1,9 +1,26 @@
 <div>
     <h2>Recherche de vidéos sur YouTube</h2>
-    <div>
-        <label for="angular_lab-user_home-search">Recherches de vidéos sur YouTube :</label>
-        <input id="angular_lab-user_home-search" type="text" [(ngModel)]="searchField" placeholder="Rechercher...">
-        <button (click)="handleSearchClick()">Rechercher</button>
+    <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <label
+            for="angular_lab-user_home-search"
+            class="block text-gray-700 text-sm font-bold mb-2"
+        >Recherches de vidéos sur YouTube :</label>
+        <div id="angular_lab-user_home-search">
+            <input
+                id="angular_lab-user_home-search-input"
+                type="text"
+                [(ngModel)]="searchField"
+                placeholder="Rechercher..."
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ng-untouched ng-pristine ng-invalid">
+            <div>
+                <button id="angular_lab-user_home-search-button" (click)="handleSearchClick()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                    Rechercher
+                </button>
+            </div>
+        </div>
         <app-search-result-list [searchResultItems]="searchResultItems()"></app-search-result-list>
     </div>
 </div>
