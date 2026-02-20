@@ -1,4 +1,5 @@
-import { Component, input } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
+import { SafeResourceUrl } from '@angular/platform-browser';
 import { RouterLink } from "@angular/router";
 
 @Component({
@@ -12,4 +13,12 @@ export class Card {
     thumbnailURL = input("");
     title        = input("");
     description  = input("");
+    showVideo    = input(false);
+    showThumbnail= input(true);
+    safeURL      = input<SafeResourceUrl | null>(null);
+    truncatedDescription = signal(25 < Number(this.description().length) ? false : true);
+
+    handleTruncateDescription() {
+      this.truncatedDescription.set(!this.truncatedDescription());
+    }
 }

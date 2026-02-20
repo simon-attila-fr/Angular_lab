@@ -1,5 +1,8 @@
 <div>
     <app-card
+        [safeURL]="safeURL()"
+        [showVideo]="true"
+        [showThumbnail]="false"
         [videoId]="videoId()"
         [title]="title()"
         [thumbnailURL]="thumbnailURL()"

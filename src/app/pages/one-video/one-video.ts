@@ -4,6 +4,7 @@ import { YouTubeService } from '../../services/you-tube-service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
+import { SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-one-video',
@@ -18,7 +19,10 @@ export class OneVideo {
     thumbnailURL = signal("");
     description  = signal("");
     videoURL     = signal("");
+    safeURL      = signal<SafeResourceUrl | null>(null);
     embedHtml    = signal("");
+    showVideo: boolean = true;
+    showThumbnail: boolean = false;
 
     constructor(route: ActivatedRoute) {
       const id: Observable<string> = route.params.pipe(map((p) => p['videoId']));
@@ -37,6 +41,7 @@ export class OneVideo {
               this.thumbnailURL.set(item.snippet.thumbnails.standard.url);
               this.description.set(item.snippet.description);
               this.embedHtml.set(item.player.embedHtml);
+              this.safeURL.set(this.youTube.getEmbedURL(_id))
             },
             error: (err) => {
               console.error(err)
