@@ -2,16 +2,21 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { AuthService } from './auth-service';
 
 const baseURL = 'https://www.googleapis.com/youtube/v3/';
 const searchURL = 'search'; // List
 const getByIdURL = 'videos';
+
+const userPlaylistURL = 'playlists/';
+const userPlaylisURLParams = '?part=snippet,contentDetails,id&mine=true';
 
 @Injectable({
   providedIn: 'root',
 })
 export class YouTubeService {
   private readonly http = inject(HttpClient);
+  private readonly auth = inject(AuthService);
   private sanitizer = inject(DomSanitizer)
   private readonly YouTubeAPIKey: string = environment.YouTubeAPI_key;
   
@@ -42,5 +47,17 @@ export class YouTubeService {
   getEmbedURL(id: string): SafeResourceUrl {
       const safeURL = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/` + id);
       return safeURL;
+  }
+
+  getUserPlaylist() {
+      const accessToken: string = this.auth.getAccessToken();
+      return this.http.get(
+        `${baseURL}${userPlaylistURL}${userPlaylisURLParams}`,
+        {
+          headers: { 'Authorization': `Bearer ${accessToken}` },
+          observe: 'response',
+          // credentials: 'include'
+        }
+      );
   }
 }

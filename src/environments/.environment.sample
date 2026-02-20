@@ -1,0 +1,4 @@
+export const environment = {
+    "YouTubeAPI_key": 'Your_YouTube_API_key',
+    "AuthClientID": 'Your_GoogleAuth_API_ClientID'
+}
