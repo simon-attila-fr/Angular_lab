@@ -27,9 +27,13 @@ export class UserHome implements OnInit {
     if(accessToken !== "") {
       this.auth.setAccessToken(accessToken);
     }
-    this.youTube.getUserPlaylist().subscribe((res) => {
-      console.log("User's playlists")
-      console.log(res)
+    this.youTube.getUserPlaylist().subscribe({
+      next: (res: any) => {
+        console.log("User's playlists");
+        console.log(res);
+        this.youTube.setUserPlaylists(res.items);
+      },
+      error: (err) => console.error(err)
     })
   }
 

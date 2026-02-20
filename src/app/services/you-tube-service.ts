@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { AuthService } from './auth-service';
@@ -17,6 +17,7 @@ const userPlaylisURLParams = '?part=snippet,contentDetails,id&mine=true';
 export class YouTubeService {
   private readonly http = inject(HttpClient);
   private readonly auth = inject(AuthService);
+  private playlists = signal("");
   private sanitizer = inject(DomSanitizer)
   private readonly YouTubeAPIKey: string = environment.YouTubeAPI_key;
   
@@ -55,9 +56,14 @@ export class YouTubeService {
         `${baseURL}${userPlaylistURL}${userPlaylisURLParams}`,
         {
           headers: { 'Authorization': `Bearer ${accessToken}` },
-          observe: 'response',
+          // observe: 'response',
+          responseType: 'json'
           // credentials: 'include'
         }
       );
+  }
+
+  setUserPlaylists(playlists: string) {
+    this.playlists.set(playlists);
   }
 }
