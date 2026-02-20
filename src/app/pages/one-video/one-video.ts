@@ -23,6 +23,7 @@ export class OneVideo {
     embedHtml    = signal("");
     showVideo: boolean = true;
     showThumbnail: boolean = false;
+    tags         = signal([]);
 
     constructor(route: ActivatedRoute) {
       const id: Observable<string> = route.params.pipe(map((p) => p['videoId']));
@@ -36,12 +37,14 @@ export class OneVideo {
         if (_id) {
           this.youTube.getVideoById(_id).subscribe({
             next: (res: any) => {
+              console.log(res)
               const item = res.items[0];
               this.title.set(item.snippet.title);
               this.thumbnailURL.set(item.snippet.thumbnails.standard.url);
               this.description.set(item.snippet.description);
               this.embedHtml.set(item.player.embedHtml);
-              this.safeURL.set(this.youTube.getEmbedURL(_id))
+              this.safeURL.set(this.youTube.getEmbedURL(_id));
+              this.tags.set(item.snippet.tags.slice(0, 3));
             },
             error: (err) => {
               console.error(err)

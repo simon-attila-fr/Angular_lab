@@ -17,6 +17,7 @@ export class Card {
     showThumbnail= input(true);
     safeURL      = input<SafeResourceUrl | null>(null);
     truncatedDescription = signal(25 < Number(this.description().length) ? false : true);
+    tags         = input([]);
 
     handleTruncateDescription() {
       this.truncatedDescription.set(!this.truncatedDescription());

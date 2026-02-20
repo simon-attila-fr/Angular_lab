@@ -35,7 +35,7 @@ export class YouTubeService {
 
   getVideoById(videoId: string) {
     const url: string = `${baseURL}${getByIdURL}?part=snippet&part=player&id=${videoId}&key=${this.YouTubeAPIKey}`;
-    console.log("one video url: ", url)
+    console.log("one video url: ", url);
     return this.http.get<{ items?: object[] }>(url, { responseType: 'json' })
   }
 
